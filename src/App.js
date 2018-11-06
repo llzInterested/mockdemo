@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import api from './api'
+import './mock/mock'
 
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      imgSrc : ''  
+    }
+  }
+  handleClick = () => {
+    let {imgSrc} = this.state
+
+    api.get('/test').then(result => {
+      console.log(result.data)
+      if(imgSrc === result.data.imgs){
+        console.log("一样")
+      }
+      this.setState({imgSrc:result.data.imgs})
+    })
+  }
+
   render() {
+    const {imgSrc} = this.state
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <button onClick={this.handleClick}>发起ajax请求</button>
+        <img src={imgSrc} alt=""/>
       </div>
     );
   }

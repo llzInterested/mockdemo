@@ -21,5 +21,10 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "axios-cancel": "^0.2.2",
+    "mockjs": "^1.0.1-beta3"
+  }
 }
